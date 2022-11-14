@@ -60,6 +60,32 @@ class educationCollectionController{
            message: error.message 
            });
        }
+
+
+
+       static async deleteEducationCollection(req, res) {
+        try {
+          const modelId = req.params.id;
+          const found = await educationCollections.findOne({
+            where: { id: modelId },
+          });
+          if (found) {
+            await educationCollections.destroy({
+              where: { id: modelId },
+            });
+            return res.status(200).json({
+              status: 200,
+              message: "Student was deleted successfull!",
+            });
+          }
+          res.status(404).json({
+            status: 404,
+            message: "Student not found",
+          });
+        } catch (error) {
+            res.status(500).json({ status: 500, message: error.message });
+          }
+        }
     }
 
 export default educationCollectionController

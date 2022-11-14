@@ -4,4 +4,5 @@ import verifyToken from "../middelwares/verifyToken";
 const router = Router();
 router.post("/education",verifyToken,educationCollectionController.addEducationCollection);
 router.get("/educationCollection",educationCollectionController.getEducationCollection);
+router.delete("/deleteEducation/:id",educationCollectionController.deleteEducationCollection)
 export default router
